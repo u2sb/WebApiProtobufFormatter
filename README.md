@@ -6,13 +6,31 @@
 
 ## 使用
 
+安装 [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/)
+
+配置
+
+```xml
+<Project>
+  <ItemGroup>
+    <Protobuf Include="Models\Proto\*.proto" />
+  </ItemGroup>
+</Project>
+```
+
+`Startup.cs`
+
 ```cs
 services.AddControllers().AddProtobufFormatters();
 ```
 
+或
+
 ```cs
 services.AddMvcCore().AddProtobufFormatters();
 ```
+
+或
 
 ```cs
 services.AddControllersWithViews().AddProtobufFormatters(new ProtobufFormatterOptions(), options => { });
@@ -21,5 +39,5 @@ services.AddControllersWithViews().AddProtobufFormatters(new ProtobufFormatterOp
 ## 打包
 
 ```sh
-dotnet pack --configuration Release --include-source
+dotnet pack -p:PackageVersion=x.x.x --configuration Release --include-source
 ```
