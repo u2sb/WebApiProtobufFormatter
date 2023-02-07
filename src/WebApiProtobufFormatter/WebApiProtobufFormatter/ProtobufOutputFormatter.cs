@@ -3,37 +3,42 @@ using System.IO;
 using System.Threading.Tasks;
 using Google.Protobuf;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.Net.Http.Headers;
 
 namespace WebApiProtobufFormatter;
 
-public class ProtobufOutputFormatter : IOutputFormatter
+public class ProtobufOutputFormatter : OutputFormatter
 {
   private readonly ProtobufFormatterOptions.ProtobufOutputFormatterOptions _options;
 
-  public ProtobufOutputFormatter()
+  public ProtobufOutputFormatter() : this(new ProtobufFormatterOptions())
   {
-    _options = new ProtobufFormatterOptions().OutputFormatterOptions;
   }
 
   public ProtobufOutputFormatter(ProtobufFormatterOptions options)
   {
     _options = options.OutputFormatterOptions;
+    Init();
   }
 
-  public bool CanWriteResult(OutputFormatterCanWriteContext context)
+  private void Init()
   {
-    if (context == null) throw new ArgumentNullException(nameof(context));
-    if (context.Object is IMessage) return true;
-    return false;
+    foreach (var mediaType in _options.SupportedMediaTypes)
+      SupportedMediaTypes.Add(MediaTypeHeaderValue.Parse(mediaType));
   }
 
-  public async Task WriteAsync(OutputFormatterWriteContext context)
+  protected override bool CanWriteType(Type? type)
+  {
+    return type?.IsAssignableTo(typeof(IMessage)) ?? false;
+  }
+
+  public override async Task WriteResponseBodyAsync(OutputFormatterWriteContext context)
   {
     if (context == null) throw new ArgumentNullException(nameof(context));
     if (context.Object is IMessage m)
     {
       var response = context.HttpContext.Response;
-      response.ContentType ??= _options.ContentTypeDefault;
+      if (string.IsNullOrWhiteSpace(response.ContentType)) response.ContentType = _options.ContentTypeDefault;
       using var ms = new MemoryStream();
       m.WriteTo(ms);
       ms.Position = 0;

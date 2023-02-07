@@ -44,9 +44,12 @@ public static class ProtobufFormatterMvcBuilderExtensions
 
     protobufFormatterOptionsConfiguration?.Invoke(protobufFormatterOptions);
 
-    builder.AddMvcOptions(options => options.InputFormatters.Add(new ProtobufInputFormatter(protobufFormatterOptions)));
-    builder.AddMvcOptions(
-      options => options.OutputFormatters.Add(new ProtobufOutputFormatter(protobufFormatterOptions)));
+    builder.AddMvcOptions(options =>
+    {
+      options.RespectBrowserAcceptHeader = true;
+      options.InputFormatters.Add(new ProtobufInputFormatter(protobufFormatterOptions));
+      options.OutputFormatters.Add(new ProtobufOutputFormatter(protobufFormatterOptions));
+    });
 
     return builder;
   }
@@ -59,9 +62,12 @@ public static class ProtobufFormatterMvcBuilderExtensions
 
     protobufFormatterOptionsConfiguration?.Invoke(protobufFormatterOptions);
 
-    builder.AddMvcOptions(options => options.InputFormatters.Add(new ProtobufInputFormatter(protobufFormatterOptions)));
-    builder.AddMvcOptions(
-      options => options.OutputFormatters.Add(new ProtobufOutputFormatter(protobufFormatterOptions)));
+    builder.AddMvcOptions(options =>
+    {
+      options.RespectBrowserAcceptHeader = true;
+      options.InputFormatters.Add(new ProtobufInputFormatter(protobufFormatterOptions));
+      options.OutputFormatters.Add(new ProtobufOutputFormatter(protobufFormatterOptions));
+    });
 
     return builder;
   }

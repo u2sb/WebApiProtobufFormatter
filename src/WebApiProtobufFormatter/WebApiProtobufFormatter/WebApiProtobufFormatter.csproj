@@ -19,11 +19,16 @@
 		<GenerateDocumentationFile>False</GenerateDocumentationFile>
 		<AssemblyVersion></AssemblyVersion>
 		<FileVersion></FileVersion>
-		<Version>0.0.1</Version>
+		<Version></Version>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+		<None Include="..\..\..\LICENSE">
+		  <Pack>True</Pack>
+		  <PackagePath>\</PackagePath>
+		</None>
 		<None Include="..\..\..\README.md">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>

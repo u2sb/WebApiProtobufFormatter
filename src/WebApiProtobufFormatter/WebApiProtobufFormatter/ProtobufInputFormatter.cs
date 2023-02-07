@@ -11,10 +11,8 @@ public class ProtobufInputFormatter : InputFormatter
 {
   private readonly ProtobufFormatterOptions.ProtobufInputFormatterOptions _options;
 
-  public ProtobufInputFormatter()
+  public ProtobufInputFormatter() : this(new ProtobufFormatterOptions())
   {
-    _options = new ProtobufFormatterOptions().InputFormatterOptions;
-    Init();
   }
 
   public ProtobufInputFormatter(ProtobufFormatterOptions options)
@@ -23,7 +21,7 @@ public class ProtobufInputFormatter : InputFormatter
     Init();
   }
 
-  public void Init()
+  private void Init()
   {
     foreach (var mediaType in _options.SupportedMediaTypes)
       SupportedMediaTypes.Add(MediaTypeHeaderValue.Parse(mediaType));
