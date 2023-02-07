@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net7.0;net6.0</TargetFrameworks>
+		<LangVersion>latest</LangVersion>
+		<AssemblyName>WebApiProtobufFormatter</AssemblyName>
+		<PackageId>SBLib.WebApi.ProtobufFormatter</PackageId>
+		<PackageTags>ASP.NET Core;InputFormatter;OutputFormatter;Protobuf;Formatter;Content-Type</PackageTags>
+		<PackageProjectUrl>https://github.com/u2sb/WebApiProtobufFormatter</PackageProjectUrl>
+		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+		<Title>WebApiProtobufFormatter</Title>
+		<Authors>MonoLogueChi</Authors>
+		<Company>U2SB</Company>
+		<RepositoryUrl>https://github.com/u2sb/WebApiProtobufFormatter</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageIcon>avatar.png</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<Nullable>enable</Nullable>
+		<GenerateDocumentationFile>False</GenerateDocumentationFile>
+		<AssemblyVersion></AssemblyVersion>
+		<FileVersion></FileVersion>
+		<Version>0.0.1</Version>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+		<None Include="..\..\..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\..\icon\avatar.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<PackageReference Include="Google.Protobuf" Version="3.21.12" />
+		<PackageReference Include="Grpc.Net.Client" Version="2.51.0" />
+		<PackageReference Include="Grpc.Tools" Version="2.51.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+</Project>
