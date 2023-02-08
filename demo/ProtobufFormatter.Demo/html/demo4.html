@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo</title>
+</head>
+
+<body>
+    <div id="lksm"></div>
+
+    <script type="module">
+        import { ProtobufFormatter } from "./js/pd.js"
+        const pd = ProtobufFormatter.Demo.Models.Pd;
+
+        let m = pd.fromObject({ id: 123, name: "艹" });
+        let mb = pd.encode(m).finish();
+
+        fetch("http://localhost:5000/api/demo/demo3", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-protobuf",
+                Accept: ["application/x-protobuf", "application/protobuf", "application/x-google-protobuf"]
+            },
+            body: mb
+        }).then(res => res.arrayBuffer()).then(buffer => {
+            let decoded = pd.decode(new Uint8Array(buffer));
+            console.log(decoded);
+            document.getElementById("lksm").innerText = JSON.stringify(decoded);
+        })
+    </script>
+</body>
+
+</html>

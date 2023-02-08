@@ -1,0 +1,8 @@
+﻿syntax = "proto3";
+
+package ProtobufFormatter.Demo.Models;
+
+message Pd {
+	int32 id = 1;
+	string name = 2;
+}

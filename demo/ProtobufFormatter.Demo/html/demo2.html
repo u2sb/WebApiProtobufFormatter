@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo</title>
+</head>
+
+<body>
+    <div id="lksm"></div>
+    <script src="./js/protobufjs/protobuf.min.js"></script>
+
+    <script>
+        protobuf.load("pd.proto")
+            .then(function (root) {
+                let pd = root.lookupType("ProtobufFormatter.Demo.Models.Pd");
+
+                fetch("http://localhost:5000/api/demo/demo2/110/艹", {
+                    method: "GET",
+                    headers: {
+                        Accept: ["application/x-protobuf", "application/protobuf", "application/x-google-protobuf"]
+                    }
+                }).then(res => res.arrayBuffer()).then(buffer => {
+                    let a = new Uint8Array(buffer);
+
+                    let decoded = pd.decode(a);
+                    console.log(decoded);
+                    document.getElementById("lksm").innerText = JSON.stringify(decoded);
+                })
+            });
+    </script>
+</body>
+
+</html>
