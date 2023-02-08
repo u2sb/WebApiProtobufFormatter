@@ -20,6 +20,22 @@ public static class ProtobufFormatterMvcBuilderExtensions
   }
 
   public static IMvcBuilder AddProtobufFormatters(this IMvcBuilder builder,
+    ProtobufFormatterOptions protobufFormatterOptions)
+  {
+    if (builder == null) throw new ArgumentNullException(nameof(builder));
+
+    return AddProtobufFormatters(builder, protobufFormatterOptions, null);
+  }
+
+  public static IMvcCoreBuilder AddProtobufFormatters(this IMvcCoreBuilder builder,
+    ProtobufFormatterOptions protobufFormatterOptions)
+  {
+    if (builder == null) throw new ArgumentNullException(nameof(builder));
+
+    return AddProtobufFormatters(builder, protobufFormatterOptions, null);
+  }
+
+  public static IMvcBuilder AddProtobufFormatters(this IMvcBuilder builder,
     Action<ProtobufFormatterOptions>? protobufFormatterOptionsConfiguration)
   {
     if (builder == null) throw new ArgumentNullException(nameof(builder));

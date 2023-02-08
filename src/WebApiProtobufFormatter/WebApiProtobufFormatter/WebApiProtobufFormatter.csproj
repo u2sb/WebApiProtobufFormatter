@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net7.0;net6.0</TargetFrameworks>
 		<LangVersion>latest</LangVersion>
 		<AssemblyName>WebApiProtobufFormatter</AssemblyName>
 		<PackageId>SBLib.WebApi.ProtobufFormatter</PackageId>
@@ -21,6 +20,7 @@
 		<FileVersion></FileVersion>
 		<Version></Version>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<TargetFrameworks>net7.0;net6.0</TargetFrameworks>
 	</PropertyGroup>
 
 	<ItemGroup>
