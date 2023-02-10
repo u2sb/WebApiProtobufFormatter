@@ -1,7 +1,7 @@
-using System.IO;
 using System.Threading.Tasks;
 using Google.Protobuf;
 using Microsoft.AspNetCore.Mvc;
+using WebApiProtobufFormatter.Utils;
 
 namespace WebApiProtobufFormatter;
 
@@ -26,19 +26,14 @@ public class ProtobufResult<T> : ActionResult where T : IMessage
     var response = context.HttpContext.Response;
     if (string.IsNullOrWhiteSpace(response.ContentType)) response.ContentType = _options.ContentTypeDefault;
 
-    using var ms = new MemoryStream();
-    _value.WriteTo(ms);
-    ms.Position = 0;
-    ms.CopyTo(response.Body);
+    _value.StreamTo(response.Body);
   }
 
   public override async Task ExecuteResultAsync(ActionContext context)
   {
     var response = context.HttpContext.Response;
     if (string.IsNullOrWhiteSpace(response.ContentType)) response.ContentType = _options.ContentTypeDefault;
-    using var ms = new MemoryStream();
-    _value.WriteTo(ms);
-    ms.Position = 0;
-    await ms.CopyToAsync(response.Body);
+
+    await _value.StreamToAsync(response.Body);
   }
 }

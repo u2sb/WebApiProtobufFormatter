@@ -1,9 +1,9 @@
 using System;
-using System.IO;
 using System.Threading.Tasks;
 using Google.Protobuf;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Net.Http.Headers;
+using WebApiProtobufFormatter.Utils;
 
 namespace WebApiProtobufFormatter;
 
@@ -39,10 +39,7 @@ public class ProtobufOutputFormatter : OutputFormatter
     {
       var response = context.HttpContext.Response;
       if (string.IsNullOrWhiteSpace(response.ContentType)) response.ContentType = _options.ContentTypeDefault;
-      using var ms = new MemoryStream();
-      m.WriteTo(ms);
-      ms.Position = 0;
-      await ms.CopyToAsync(response.Body);
+      await m.StreamToAsync(response.Body);
     }
   }
 }

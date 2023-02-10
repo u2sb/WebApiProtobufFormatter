@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Google.Protobuf;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Net.Http.Headers;
+using static WebApiProtobufFormatter.Utils.Serialize;
 
 namespace WebApiProtobufFormatter;
 
@@ -55,11 +56,5 @@ public class ProtobufInputFormatter : InputFormatter
     {
       throw new InputFormatterException("", e);
     }
-  }
-
-  public static IMessage Parse(Stream data, MessageParser parser)
-  {
-    data.Position = 0;
-    return parser.ParseFrom(data);
   }
 }
