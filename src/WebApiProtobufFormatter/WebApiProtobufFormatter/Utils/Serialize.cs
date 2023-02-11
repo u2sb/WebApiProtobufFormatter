@@ -17,12 +17,12 @@ public static class Serialize
     return parser.ParseFrom(data);
   }
 
-  public static T MessageParse<T>(Stream sr, MessageParser<T> parser) where T : IMessage<T>
+  public static T Parse<T>(Stream sr, MessageParser<T> parser) where T : IMessage<T>
   {
     return parser.ParseFrom(sr);
   }
 
-  public static T MessageParse<T>(byte[] data, MessageParser<T> parser) where T : IMessage<T>
+  public static T Parse<T>(byte[] data, MessageParser<T> parser) where T : IMessage<T>
   {
     return parser.ParseFrom(data);
   }
