@@ -6,9 +6,24 @@ namespace WebApiProtobufFormatter.Utils;
 
 public static class Serialize
 {
-  public static IMessage Parse(Stream data, MessageParser parser)
+  public static IMessage Parse(Stream sr, MessageParser parser)
   {
-    data.Position = 0;
+    sr.Position = 0;
+    return parser.ParseFrom(sr);
+  }
+
+  public static IMessage Parse(byte[] data, MessageParser parser)
+  {
+    return parser.ParseFrom(data);
+  }
+
+  public static T MessageParse<T>(Stream sr, MessageParser<T> parser) where T : IMessage<T>
+  {
+    return parser.ParseFrom(sr);
+  }
+
+  public static T MessageParse<T>(byte[] data, MessageParser<T> parser) where T : IMessage<T>
+  {
     return parser.ParseFrom(data);
   }
 
