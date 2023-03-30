@@ -20,7 +20,7 @@
 		<FileVersion></FileVersion>
 		<Version></Version>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
-		<TargetFrameworks>net7.0;net6.0</TargetFrameworks>
+		<TargetFrameworks>net8.0;net7.0;net6.0</TargetFrameworks>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -37,7 +37,7 @@
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
-		<PackageReference Include="Google.Protobuf" Version="3.21.12" />
+		<PackageReference Include="Google.Protobuf" Version="3.22.1" />
 	</ItemGroup>
 
 </Project>
